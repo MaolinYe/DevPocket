@@ -1,0 +1,15 @@
+<view class="page container">
+  <view class="header">
+    <view class="title">图片转 Base64</view>
+    <view class="subtitle">选择图片并转换为 Base64 数据</view>
+  </view>
+  <view class="container">
+    <button bindtap="choose">选择图片</button>
+    <view style="height:12rpx"></view>
+    <image wx:if="{{preview}}" src="{{preview}}" mode="widthFix" style="max-width:100%;border-radius:12rpx" />
+    <view style="height:12rpx"></view>
+    <textarea readonly value="{{b64}}"></textarea>
+    <view style="height:12rpx"></view>
+    <button bindtap="copy">复制 Base64</button>
+  </view>
+</view>

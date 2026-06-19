@@ -1,0 +1,12 @@
+<view class="page">
+  <view class="header container">
+    <view class="title">UUID 生成</view>
+  </view>
+  <view class="container">
+    <button bindtap="gen" class="btn">生成 UUID</button>
+    <view style="height:18rpx"></view>
+    <view>{{output}}</view>
+    <view style="height:18rpx"></view>
+    <button bindtap="copyOutput" class="btn">复制</button>
+  </view>
+</view>

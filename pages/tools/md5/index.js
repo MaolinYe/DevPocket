@@ -1,0 +1,2 @@
+const md5 = require('../../../utils/tools/md5')
+Page({ data:{ input:'', output:'' }, onInput(e){ this.setData({ input: e.detail.value }) }, compute(){ try{ const out = md5.execute(this.data.input); this.setData({ output: out }) }catch(e){ wx.showToast({ title: e.message||'计算失败', icon:'none' }) } }, copyOutput(){ wx.setClipboardData({ data: this.data.output||'', success(){ wx.showToast({ title:'已复制' }) } }) } })

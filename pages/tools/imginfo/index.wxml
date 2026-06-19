@@ -1,0 +1,14 @@
+<view class="page container">
+  <view class="header">
+    <view class="title">图片信息</view>
+  </view>
+  <view class="container">
+    <button bindtap="choose">选择图片</button>
+    <view style="height:12rpx"></view>
+    <image wx:if="{{path}}" src="{{path}}" mode="widthFix" style="max-width:100%;border-radius:12rpx" />
+    <view style="height:12rpx"></view>
+    <view>宽: {{info.width}} 高: {{info.height}}</view>
+    <view>类型: {{info.type}}</view>
+    <view>大小: {{sizeReadable}}</view>
+  </view>
+</view>

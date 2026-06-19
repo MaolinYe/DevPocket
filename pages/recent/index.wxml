@@ -1,0 +1,36 @@
+<view class="page">
+  <view class="header container">
+    <view style="display:flex; justify-content:space-between; align-items:center">
+      <view>
+        <view class="title">最近使用</view>
+      </view>
+      <button bindtap="onClear" class="btn">清空</button>
+    </view>
+  </view>
+
+  <view class="container">
+    <block wx:if="{{recentList.length}}">
+      <view class="recent-list">
+        <block wx:for="{{recentItems}}" wx:key="id">
+          <view class="recent-item" data-id="{{item.id}}">
+            <view class="left" bindtap="onToolClick" data-id="{{item.id}}">
+              <icon name="{{item.icon}}" size="28" color="#111" />
+              <view class="meta">
+                <text class="name">{{item.name}}</text>
+              </view>
+            </view>
+            <button class="del" data-id="{{item.id}}" bindtap="onRemove">删除</button>
+          </view>
+        </block>
+      </view>
+    </block>
+
+    <block wx:else>
+      <view class="glass-card" style="padding:40rpx; text-align:center">
+        <view class="muted">暂无使用记录</view>
+        <view style="height:18rpx"></view>
+        <button bindtap="goToTools" class="btn">去使用工具</button>
+      </view>
+    </block>
+  </view>
+</view>

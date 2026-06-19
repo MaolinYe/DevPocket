@@ -1,0 +1,15 @@
+<view class="page container">
+  <view class="header">
+    <view class="title">MD5 加密</view>
+    <view class="subtitle">计算任意文本的 MD5 摘要</view>
+  </view>
+  <view class="container">
+    <textarea placeholder="输入文本" bindinput="onInput" value="{{input}}"></textarea>
+    <view style="height:12rpx"></view>
+    <button bindtap="compute">生成 MD5</button>
+    <view style="height:12rpx"></view>
+    <input readonly value="{{output}}" />
+    <view style="height:12rpx"></view>
+    <button bindtap="copyOutput">复制</button>
+  </view>
+</view>

@@ -1,0 +1,12 @@
+.header { padding-bottom: 12rpx }
+.grid { margin-top: 18rpx }
+.grid-item { padding: 16rpx }
+.btn { margin-left: 12rpx }
+
+.recent-list{ display:flex; flex-direction:column; gap:12rpx }
+.recent-item{ display:flex; align-items:center; justify-content:space-between; padding:12rpx; border-radius:14rpx; background:rgba(255,255,255,0.7); backdrop-filter:blur(12px); box-shadow:0 6rpx 20rpx rgba(0,0,0,.04) }
+.recent-item .left{ display:flex; align-items:center; gap:14rpx }
+.recent-item .meta{ display:flex; flex-direction:column }
+.recent-item .name{ font-size:28rpx }
+.recent-item .del{ background:transparent; color:#ff3b30; border:0 }
+

@@ -1,0 +1,2 @@
+const cc = require('../../../utils/tools/caseconvert')
+Page({ data:{ input:'', output:'' }, onInput(e){ this.setData({ input: e.detail.value }) }, convert(e){ const mode = e.currentTarget.dataset.mode; try{ const out = cc.execute(this.data.input, mode); this.setData({ output: out }) }catch(err){ wx.showToast({ title:'转换失败', icon:'none' }) } }, copy(){ wx.setClipboardData({ data: this.data.output||'', success(){ wx.showToast({ title:'已复制' }) } }) } })

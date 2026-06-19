@@ -1,0 +1,6 @@
+<view class="tool-card">
+  <view class="tool-icon glass-card">
+    <icon name="{{icon}}" size="40" color="#111" />
+  </view>
+  <text class="tool-name">{{name}}</text>
+</view>

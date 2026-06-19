@@ -1,0 +1,3 @@
+<view class="icon-root">
+  <image src="{{src}}" style="width:{{size}}px;height:{{size}}px;" mode="aspectFit" />
+</view>

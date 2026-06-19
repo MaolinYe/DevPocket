@@ -1,0 +1,4 @@
+.tabbar-root{ position:fixed; left:0; right:0; bottom:18rpx; display:flex; justify-content:center; pointer-events:none }
+.tabbar{ pointer-events:auto; display:flex; gap:42rpx; padding:12rpx 24rpx; border-radius:36rpx; align-items:center; box-shadow:0 12rpx 36rpx rgba(0,0,0,.12); background: rgba(255,255,255,.75); backdrop-filter: blur(18px); }
+.tab{ display:flex; flex-direction:column; align-items:center; justify-content:center; color:#111 }
+.tab .label{ font-size:22rpx; color:#111; margin-top:6rpx }

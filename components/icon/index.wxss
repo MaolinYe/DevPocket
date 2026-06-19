@@ -1,0 +1,2 @@
+.icon-root{ display:flex; align-items:center; justify-content:center }
+.icon-root image{ display:block }

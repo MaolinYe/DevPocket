@@ -1,0 +1,16 @@
+<view class="tabbar-root">
+  <view class="tabbar glass">
+    <view class="tab" data-index="0" data-path="/pages/tools/index" bindtap="switchTab">
+      <icon name="clock" size="22" color="{{active===0? '#007AFF':'#8e8e93'}}" />
+      <text class="label">工具</text>
+    </view>
+    <view class="tab" data-index="1" data-path="/pages/recent/index" bindtap="switchTab">
+      <icon name="document" size="22" color="{{active===1? '#007AFF':'#8e8e93'}}" />
+      <text class="label">最近</text>
+    </view>
+    <view class="tab" data-index="2" data-path="/pages/profile/index" bindtap="switchTab">
+      <icon name="hash" size="22" color="{{active===2? '#007AFF':'#8e8e93'}}" />
+      <text class="label">我的</text>
+    </view>
+  </view>
+</view>

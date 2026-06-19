@@ -1,15 +1,46 @@
 {
-  "pages": [
-    "pages/index/index",
-    "pages/logs/logs"
+    "pages": [
+    "pages/tools/index",
+    "pages/tools/json/index",
+    "pages/tools/timestamp/index",
+    "pages/tools/uuid/index",
+    "pages/tools/base64/index",
+    "pages/tools/md5/index",
+    "pages/tools/urlencode/index",
+    "pages/tools/wordcount/index",
+    "pages/tools/caseconvert/index",
+    "pages/tools/dedupe/index",
+    "pages/tools/imgcompress/index",
+    "pages/tools/img2base64/index",
+    "pages/tools/imginfo/index",
+    "pages/tools/promptopt/index",
+    "pages/recent/index",
+    "pages/profile/index"
   ],
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "Weixin",
-    "navigationBarBackgroundColor": "#ffffff"
+    "navigationBarTitleText": "程序员口袋",
+    "navigationBarBackgroundColor": "#F5F5F7",
+    "backgroundTextStyle": "light",
+    "backgroundColor": "#F5F5F7"
+  },
+  "tabBar": {
+    "custom": true,
+    "list": [
+      {
+        "pagePath": "pages/tools/index",
+        "text": "工具"
+      },
+      {
+        "pagePath": "pages/recent/index",
+        "text": "最近"
+      },
+      {
+        "pagePath": "pages/profile/index",
+        "text": "我的"
+      }
+    ]
   },
   "style": "v2",
-  "componentFramework": "glass-easel",
-  "sitemapLocation": "sitemap.json",
-  "lazyCodeLoading": "requiredComponents"
+  "sitemapLocation": "sitemap.json"
 }

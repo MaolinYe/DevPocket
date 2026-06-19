@@ -1,0 +1,20 @@
+<view class="page container">
+  <view class="header">
+    <view class="title">Base64 编解码</view>
+    <view class="subtitle">支持 UTF-8 文本的编码与解码</view>
+  </view>
+  <view class="container">
+    <textarea placeholder="输入文本" bindinput="onInput" value="{{input}}"></textarea>
+    <view style="height:12rpx"></view>
+    <view class="row">
+      <button data-mode="encode" bindtap="setMode" class="{{mode==='encode'? 'btn active':'btn'}}">编码</button>
+      <button data-mode="decode" bindtap="setMode" class="{{mode==='decode'? 'btn active':'btn'}}">解码</button>
+    </view>
+    <view style="height:12rpx"></view>
+    <button bindtap="run">执行</button>
+    <view style="height:12rpx"></view>
+    <textarea readonly value="{{output}}"></textarea>
+    <view style="height:12rpx"></view>
+    <button bindtap="copyOutput">复制结果</button>
+  </view>
+</view>

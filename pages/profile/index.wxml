@@ -1,0 +1,24 @@
+<view class="page">
+  <view class="header container">
+    <view style="display:flex; align-items:center">
+        <view style="width:84rpx; height:84rpx; border-radius:42rpx; overflow:hidden; background:#fff; display:flex; align-items:center; justify-content:center;">
+          <image wx:if="{{!imgError}}" src="/assets/logo.png" mode="aspectFill" style="width:100%;height:100%" binderror="onImgError" />
+          <view wx:else style="width:84rpx;height:84rpx;border-radius:42rpx;background:#007AFF;color:#fff;display:flex;align-items:center;justify-content:center;font-size:36rpx">P</view>
+      </view>
+      <view style="margin-left:20rpx">
+        <view style="font-size:28rpx; font-weight:600">程序员口袋</view>
+        <view class="muted">v1.0.0</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="container">
+    <view class="glass-card" style="padding:20rpx">
+      <button bindtap="onAbout" class="btn">关于我们</button>
+      <view style="height:12rpx"></view>
+      <button bindtap="onFeedback" class="btn">意见反馈</button>
+      <view style="height:12rpx"></view>
+      <button open-type="share" class="btn">分享小程序</button>
+    </view>
+  </view>
+</view>

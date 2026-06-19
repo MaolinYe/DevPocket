@@ -1,0 +1,23 @@
+<view class="page">
+  <view class="header container">
+    <view class="title">程序员口袋</view>
+    <view class="subtitle">开发者常用工具集合</view>
+
+    <view style="height:18rpx"></view>
+
+    <view class="search-pill">
+      <icon name="filter" size="18" color="#999" style="margin-right:12rpx" />
+      <input placeholder="搜索工具" bindinput="onSearch" placeholder-style="color:#999"/>
+    </view>
+  </view>
+
+  <view class="container">
+    <view class="grid">
+      <block wx:for="{{filteredTools}}" wx:key="id">
+        <view class="grid-item" bindtap="onToolClick" data-id="{{item.id}}">
+          <tool-card name="{{item.name}}" icon="{{item.icon}}" id="{{item.id}}"/>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

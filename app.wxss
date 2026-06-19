@@ -1,10 +1,66 @@
-/**app.wxss**/
-.container {
-  height: 100%;
+/** Global styles for 程序员口袋 */
+/* 基础配色、卡片与毛玻璃样式 */
+page, .page {
+  background: #F5F5F7;
+  min-height: 100%;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 主要颜色 */
+.primary { color: #007AFF }
+
+/* 液态玻璃卡片 */
+.glass-card {
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(20px);
+  border-radius: 24rpx;
+  box-shadow: 0 8rpx 30rpx rgba(0,0,0,.08);
+}
+
+/* 搜索胶囊 */
+.search-pill {
+  display: flex;
+  align-items: center;
+  padding: 18rpx 24rpx;
+  border-radius: 999rpx;
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 6rpx 20rpx rgba(0,0,0,.04);
+}
+
+/* 工具卡片 */
+.tool-card {
+  width: 88rpx;
+  height: 110rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  padding: 200rpx 0;
-  box-sizing: border-box;
-} 
+  justify-content: flex-start;
+  padding-top: 8rpx;
+}
+.tool-icon{
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 18rpx;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:40rpx;
+}
+.tool-name{ font-size:24rpx; color:#111; margin-top:8rpx; text-align:center }
+
+/* 常用布局 */
+.container { padding: 28rpx }
+.header { padding: 28rpx 8rpx }
+.title { font-size:36rpx; font-weight:600 }
+.subtitle { color:#666; margin-top:8rpx }
+
+.grid { display:flex; flex-wrap:wrap; justify-content:flex-start }
+.grid-item { width:25%; display:flex; align-items:center; justify-content:center; padding:18rpx }
+
+/* 小按钮 */
+.btn { background:#fff; border-radius:999rpx; padding:12rpx 22rpx; box-shadow:0 6rpx 20rpx rgba(0,0,0,.04) }
+
+/* 文字区域 */
+.muted { color:#8e8e93 }
+
