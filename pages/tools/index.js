@@ -12,10 +12,14 @@ Page({
     console.log('tools page onLoad')
     const tools = (app && app.globalData && app.globalData.tools) || []
     this.setData({ tools, filteredTools: tools })
-    // register custom tab-bar if present
-    try{ const tabBar = this.getTabBar && this.getTabBar(); if(tabBar){ tabBar.updateActive && tabBar.updateActive() } }catch(e){}
   },
-  onShow() { try { console.log('tools page onShow, route:', (getCurrentPages()||[]).map(p=>p.route)) }catch(e){} },
+  onShow() { 
+    try { 
+      console.log('tools page onShow, route:', (getCurrentPages()||[]).map(p=>p.route))
+      const tabBar = this.getTabBar && this.getTabBar()
+      if (tabBar) tabBar.setData({ active: 0 })
+    }catch(e){} 
+  },
 
   onSearch(e) {
     const q = (e.detail.value || '').trim().toLowerCase()

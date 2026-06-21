@@ -1,5 +1,30 @@
-/* 页面样式，复用全局样式 */
-.header { padding-bottom: 12rpx }
-.search-pill input { flex:1; height:36rpx; font-size:26rpx; border:0; padding:0 }
-.grid { margin-top: 18rpx }
-.grid-item { padding: 16rpx }
+.header {
+  padding-bottom: 12rpx;
+}
+
+.search-pill input {
+  flex: 1;
+  height: 36rpx;
+  font-size: 26rpx;
+  border: 0;
+  padding: 0;
+}
+
+/* 工具区域 */
+.grid {
+  margin-top: 24rpx;
+
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  column-gap: 8rpx;
+  row-gap: 32rpx;
+
+  padding: 0 8rpx 180rpx;
+}
+
+.grid-item {
+  display: flex;
+  justify-content: center;
+}

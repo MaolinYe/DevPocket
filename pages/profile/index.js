@@ -1,13 +1,44 @@
 Page({
-  data: { imgError: false },
+  data: {
+    imgError: false
+  },
+
+  onShow(){
+    const tabBar = this.getTabBar && this.getTabBar()
+    if (tabBar) tabBar.setData({ active: 2 })  
+  },
+
+  onImgError() {
+    this.setData({
+      imgError: true
+    })
+  },
+
   onAbout() {
-    wx.showModal({ title: '关于我们', content: '程序员口袋 - 纯前端工具箱，所有数据本地存储。' })
+    wx.showModal({
+      title: '关于程序员口袋',
+      content: '一个专为开发者打造的轻量级工具集合。',
+      showCancel: false
+    })
   },
+
   onFeedback() {
-    wx.showModal({ title: '意见反馈', content: '欢迎通过 issues 或邮件提交反馈（示例文本）。' })
+    wx.showToast({
+      title: '功能开发中',
+      icon: 'none'
+    })
   },
-  onImgError() { this.setData({ imgError: true }) },
+
   onShareAppMessage() {
-    return { title: '程序员口袋：面向开发者的纯前端工具箱', path: '/pages/tools/index' }
-  }
+    return {
+      title: '程序员口袋 - 开发者工具箱',
+      path: '/pages/tools/index'
+    }
+  },
+
+  onShare() {
+  wx.showShareMenu({
+    menus: ['shareAppMessage']
+  })
+}
 })

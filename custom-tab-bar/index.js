@@ -5,21 +5,12 @@ const tabs = [
 ]
 Component({
   data: { active: 0 },
-  attached(){
-    this.updateActive()
-  },
   methods: {
-    updateActive(){
-      try{
-        const pages = getCurrentPages()
-        const route = pages.length ? ('/' + pages[pages.length-1].route) : '/pages/tools/index'
-        const idx = tabs.findIndex(t => t.pagePath === route)
-        this.setData({ active: idx === -1 ? 0 : idx })
-      }catch(e){ this.setData({ active: 0 }) }
-    },
     switchTab(e){
       const path = e.currentTarget.dataset.path
       if(!path) return
+      const idx = tabs.findIndex(t => t.pagePath === path)
+      this.setData({ active: idx })
       wx.switchTab({ url: path })
     }
   }

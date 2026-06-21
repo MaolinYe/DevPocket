@@ -1,24 +1,63 @@
 <view class="page">
-  <view class="header container">
-    <view style="display:flex; align-items:center">
-        <view style="width:84rpx; height:84rpx; border-radius:42rpx; overflow:hidden; background:#fff; display:flex; align-items:center; justify-content:center;">
-          <image wx:if="{{!imgError}}" src="/assets/logo.png" mode="aspectFill" style="width:100%;height:100%" binderror="onImgError" />
-          <view wx:else style="width:84rpx;height:84rpx;border-radius:42rpx;background:#007AFF;color:#fff;display:flex;align-items:center;justify-content:center;font-size:36rpx">P</view>
-      </view>
-      <view style="margin-left:20rpx">
-        <view style="font-size:28rpx; font-weight:600">程序员口袋</view>
-        <view class="muted">v1.0.0</view>
+
+  <!-- 用户信息 -->
+  <view class="profile-header">
+
+    <view class="avatar-wrap">
+      <image
+        wx:if="{{!imgError}}"
+        src="/assets/logo.png"
+        mode="aspectFill"
+        class="avatar"
+        binderror="onImgError"
+      />
+
+      <view wx:else class="avatar-fallback">
+        P
       </view>
     </view>
+
+    <view class="profile-name">
+      程序员口袋
+    </view>
+
+    <view class="profile-version">
+      Version 1.0.0
+    </view>
+
   </view>
 
+  <!-- 菜单 -->
   <view class="container">
-    <view class="glass-card" style="padding:20rpx">
-      <button bindtap="onAbout" class="btn">关于我们</button>
-      <view style="height:12rpx"></view>
-      <button bindtap="onFeedback" class="btn">意见反馈</button>
-      <view style="height:12rpx"></view>
-      <button open-type="share" class="btn">分享小程序</button>
+
+    <view class="glass-card menu-card">
+
+      <view class="menu-item" bindtap="onAbout">
+        <text>关于我们</text>
+        <text class="arrow">›</text>
+      </view>
+
+      <view class="divider"></view>
+
+      <view class="menu-item" bindtap="onFeedback">
+        <text>意见反馈</text>
+        <text class="arrow">›</text>
+      </view>
+
+      <view class="divider"></view>
+
+      <view class="menu-item" bindtap="onShare">
+        <text>分享小程序</text>
+        <text class="arrow">›</text>
+      </view>
+
     </view>
+
+    <view class="footer">
+      <view>程序员口袋</view>
+      <view>© 2026 DevPocket</view>
+    </view>
+
   </view>
+
 </view>

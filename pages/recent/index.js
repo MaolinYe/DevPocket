@@ -13,6 +13,8 @@ Page({
       return { id, name: t.name || id, icon: t.icon || '⚙️' }
     })
     this.setData({ recentList, recentItems, tools })
+    const tabBar = this.getTabBar && this.getTabBar()
+    if (tabBar) tabBar.setData({ active: 1 })
   },
 
   onToolClick(e) {

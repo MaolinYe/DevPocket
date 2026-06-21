@@ -1,23 +1,162 @@
-<view class="page container">
-  <view class="header">
-    <view class="title">图片压缩</view>
-    <view class="subtitle">选择图片并按目标分辨率压缩，支持保存到相册</view>
-  </view>
-
+<view class="page">
   <view class="container">
-    <button bindtap="chooseImage">选择图片</button>
-    <view style="height:12rpx"></view>
-    <view class="row">
-      <input placeholder="目标宽 (px)" bindinput="onWidth" type="number" value="{{targetW}}" />
-      <input placeholder="目标高 (px)" bindinput="onHeight" type="number" value="{{targetH}}" />
+
+    <view class="title">图片压缩</view>
+    <view class="subtitle">减小图片体积，方便上传与分享</view>
+
+    <!-- 选择图片 -->
+    <view class="glass-card card">
+
+      <button
+        class="primary-btn"
+        bindtap="chooseImage"
+      >
+        选择图片
+      </button>
+
+      <image
+        wx:if="{{src}}"
+        src="{{src}}"
+        mode="widthFix"
+        class="preview"
+      />
+
     </view>
-    <view style="height:12rpx"></view>
-    <button bindtap="compress" class="btn">开始压缩</button>
-    <view style="height:12rpx"></view>
-    <image wx:if="{{preview}}" src="{{preview}}" mode="widthFix" style="max-width:100%;border-radius:12rpx" />
-    <view style="height:12rpx"></view>
-    <button wx:if="{{preview}}" bindtap="saveImage">保存到相册</button>
+
+    <!-- 原图信息 -->
+    <view
+      wx:if="{{src}}"
+      class="glass-card card"
+    >
+
+      <view class="section-title">
+        原图信息
+      </view>
+
+      <view class="info-row">
+        <text>尺寸</text>
+        <text>{{originWidth}} × {{originHeight}}</text>
+      </view>
+
+      <view class="info-row">
+        <text>大小</text>
+        <text>{{originSize}}</text>
+      </view>
+
+    </view>
+
+    <!-- 压缩配置 -->
+    <view
+      wx:if="{{src}}"
+      class="glass-card card"
+    >
+
+      <view class="section-title">
+        压缩等级
+      </view>
+
+      <view class="quality-box">
+
+        <view class="info-row">
+          <text>图片质量</text>
+          <text class="quality-value">{{quality}}%</text>
+        </view>
+
+        <slider
+          min="40"
+          max="90"
+          step="5"
+          value="{{quality}}"
+          activeColor="#007AFF"
+          backgroundColor="#E5E5EA"
+          bindchanging="onQualityChanging"
+          bindchange="onQualityChange"
+        />
+
+      </view>
+
+      <view class="quality-desc">
+
+        <view class="quality-tag {{quality<60?'active':''}}">
+          极限
+        </view>
+
+        <view class="quality-tag {{quality>=60&&quality<75?'active':''}}">
+          推荐
+        </view>
+
+        <view class="quality-tag {{quality>=75&&quality<90?'active':''}}">
+          标准
+        </view>
+
+        <view class="quality-tag {{quality>=90?'active':''}}">
+          高清
+        </view>
+
+      </view>
+
+      <view class="estimate">
+        {{qualityText}}
+      </view>
+
+      <view class="estimate-size">
+        压缩后预计：
+        {{previewWidth}} × {{previewHeight}}
+      </view>
+
+      <button
+        class="primary-btn compress-btn"
+        bindtap="compressImage"
+      >
+        开始压缩
+      </button>
+
+    </view>
+
+    <!-- 压缩结果 -->
+    <view
+      wx:if="{{resultSrc}}"
+      class="glass-card card"
+    >
+
+      <view class="section-title">
+        压缩结果
+      </view>
+
+      <image
+        src="{{resultSrc}}"
+        mode="widthFix"
+        class="preview"
+      />
+
+      <view class="info-row">
+        <text>尺寸</text>
+        <text>{{resultWidth}} × {{resultHeight}}</text>
+      </view>
+
+      <view class="info-row">
+        <text>大小</text>
+        <text>{{resultSize}}</text>
+      </view>
+
+      <view class="info-row">
+        <text>压缩率</text>
+        <text>{{savedPercent}}%</text>
+      </view>
+
+      <button
+        class="primary-btn"
+        bindtap="saveImage"
+      >
+        保存图片
+      </button>
+
+    </view>
+
   </view>
 
-  <canvas canvas-id="compressCanvas" style="width:300px;height:300px;display:none"></canvas>
+  <canvas
+    canvas-id="compressCanvas"
+    style="width:{{canvasWidth}}px;height:{{canvasHeight}}px;position:fixed;left:-9999px;top:-9999px;"
+  />
 </view>

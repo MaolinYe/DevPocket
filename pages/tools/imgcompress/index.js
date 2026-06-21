@@ -1,18 +1,364 @@
-Page({ data:{ src:'', targetW:'800', targetH:'600', preview:'', working:false },
-  chooseImage(){ const self=this; wx.chooseImage({ count:1, success(res){ self.setData({ src: res.tempFilePaths[0], preview: res.tempFilePaths[0] }) } }) },
-  onWidth(e){ this.setData({ targetW: e.detail.value }) },
-  onHeight(e){ this.setData({ targetH: e.detail.value }) },
-  compress(){ const self=this; if(!this.data.src){ wx.showToast({ title:'请先选择图片', icon:'none' }); return }
-    const w= parseInt(this.data.targetW)||800; const h=parseInt(this.data.targetH)||600; this.setData({ working:true })
-    wx.getImageInfo({ src: this.data.src, success(info){ const ratio = info.width/info.height; let dw=w, dh=h; if(!self.data.targetW || !self.data.targetH){ if(info.width>info.height){ dw = w; dh = Math.round(w/ratio) } else { dh = h; dw = Math.round(h*ratio) } }
-      const systemInfo = wx.getSystemInfoSync(); const canvasId='compressCanvas'; const query = wx.createSelectorQuery(); query.select('#'+canvasId).fields({ node:true, size:true }).exec(()=>{
-        const ctx = wx.createCanvasContext(canvasId, self);
-        ctx.drawImage(self.data.src, 0, 0, dw, dh);
-        ctx.draw(false, setTimeout(()=>{
-          wx.canvasToTempFilePath({ canvasId, width: dw, height: dh, destWidth: dw, destHeight: dh, success(res){ self.setData({ preview: res.tempFilePath, working:false }); wx.showToast({ title:'压缩完成' }) }, fail(err){ self.setData({ working:false }); wx.showToast({ title:'生成失败', icon:'none' }) } }, self)
-        },100));
-      });
-    }, fail(){ this.setData({ working:false }); wx.showToast({ title:'读取图片失败', icon:'none' }) } }) },
-  saveImage(){ const self=this; if(!this.data.preview){ wx.showToast({ title:'没有可保存的图片', icon:'none' }); return }
-    wx.saveImageToPhotosAlbum({ filePath: this.data.preview, success(){ wx.showToast({ title:'已保存到相册' }) }, fail(err){ if(err.errMsg && err.errMsg.indexOf('auth')!==-1){ wx.showModal({ title:'权限', content:'请授权保存到相册', showCancel:false }) } else{ wx.showToast({ title:'保存失败', icon:'none' }) } } }) }
+Page({
+
+  data: {
+    src: '',
+    resultSrc: '',
+
+    quality: 70,
+    qualityText: '推荐压缩，适合分享',
+
+    originWidth: 0,
+    originHeight: 0,
+    originSize: '',
+
+    previewWidth: 0,
+    previewHeight: 0,
+
+    resultWidth: 0,
+    resultHeight: 0,
+    resultSize: '',
+
+    savedPercent: 0,
+
+    canvasWidth: 0,
+    canvasHeight: 0
+  },
+
+  chooseImage() {
+
+    wx.chooseMedia({
+      count: 1,
+      mediaType: ['image'],
+
+      success: (res) => {
+
+        const file = res.tempFiles[0]
+
+        wx.getImageInfo({
+          src: file.tempFilePath,
+
+          success: (img) => {
+
+            this.setData({
+              src: file.tempFilePath,
+              resultSrc: '',
+
+              originWidth: img.width,
+              originHeight: img.height,
+
+              originSize: this.formatSize(file.size)
+            })
+
+            this.updatePreviewSize()
+          }
+        })
+
+      }
+    })
+
+  },
+
+  updatePreviewSize() {
+
+    if (!this.data.originWidth) return
+
+    const scale = this.data.quality / 100
+
+    this.setData({
+      previewWidth: Math.round(
+        this.data.originWidth * scale
+      ),
+
+      previewHeight: Math.round(
+        this.data.originHeight * scale
+      )
+    })
+
+  },
+
+  updateQualityText(value) {
+
+    let text = ''
+
+    if (value >= 90) {
+      text = '接近原图质量'
+    }
+    else if (value >= 75) {
+      text = '标准压缩，画质良好'
+    }
+    else if (value >= 60) {
+      text = '推荐压缩，适合分享'
+    }
+    else {
+      text = '极限压缩，体积最小'
+    }
+
+    this.setData({
+      qualityText: text
+    })
+
+    this.updatePreviewSize()
+
+  },
+
+  onQualityChanging(e) {
+
+    const value = Number(e.detail.value)
+
+    this.setData({
+      quality: value
+    })
+
+    this.updateQualityText(value)
+
+  },
+
+  onQualityChange(e) {
+
+    const value = Number(e.detail.value)
+
+    this.setData({
+      quality: value
+    })
+
+    this.updateQualityText(value)
+
+  },
+
+  compressImage() {
+
+    if (!this.data.src) {
+
+      wx.showToast({
+        title: '请先选择图片',
+        icon: 'none'
+      })
+
+      return
+    }
+
+    wx.showLoading({
+      title: '压缩中...'
+    })
+
+    const scale = this.data.quality / 100
+
+    const width = Math.round(
+      this.data.originWidth * scale
+    )
+
+    const height = Math.round(
+      this.data.originHeight * scale
+    )
+
+    this.setData({
+      canvasWidth: width,
+      canvasHeight: height
+    })
+
+    setTimeout(() => {
+
+      const ctx = wx.createCanvasContext(
+        'compressCanvas'
+      )
+
+      ctx.clearRect(
+        0,
+        0,
+        width,
+        height
+      )
+
+      ctx.drawImage(
+        this.data.src,
+        0,
+        0,
+        width,
+        height
+      )
+
+      ctx.draw(false, () => {
+
+        setTimeout(() => {
+
+          wx.canvasToTempFilePath({
+
+            canvasId: 'compressCanvas',
+
+            width,
+            height,
+
+            destWidth: width,
+            destHeight: height,
+
+            success: (res) => {
+
+              wx.getFileSystemManager()
+                .getFileInfo({
+
+                  filePath: res.tempFilePath,
+
+                  success: (fileInfo) => {
+
+                    const originBytes =
+                      this.parseSize(
+                        this.data.originSize
+                      )
+
+                    const newBytes =
+                      fileInfo.size
+
+                    const percent =
+                      Math.max(
+                        0,
+                        Math.round(
+                          (
+                            originBytes -
+                            newBytes
+                          ) /
+                          originBytes *
+                          100
+                        )
+                      )
+
+                    wx.hideLoading()
+
+                    this.setData({
+
+                      resultSrc:
+                        res.tempFilePath,
+
+                      resultWidth:
+                        width,
+
+                      resultHeight:
+                        height,
+
+                      resultSize:
+                        this.formatSize(
+                          newBytes
+                        ),
+
+                      savedPercent:
+                        percent
+
+                    })
+
+                    wx.showModal({
+                      title: '压缩成功',
+                      content:
+                        `原图：${this.data.originSize}\n` +
+                        `压缩后：${this.formatSize(newBytes)}\n` +
+                        `节省：${percent}%`,
+                      showCancel: false
+                    })
+
+                  },
+
+                  fail: () => {
+
+                    wx.hideLoading()
+
+                    wx.showToast({
+                      title: '获取文件信息失败',
+                      icon: 'none'
+                    })
+
+                  }
+
+                })
+
+            },
+
+            fail: (err) => {
+
+              wx.hideLoading()
+
+              console.error(err)
+
+              wx.showToast({
+                title: '压缩失败',
+                icon: 'none'
+              })
+
+            }
+
+          })
+
+        }, 300)
+
+      })
+
+    }, 50)
+
+  },
+
+  saveImage() {
+
+    if (!this.data.resultSrc) {
+      return
+    }
+
+    wx.saveImageToPhotosAlbum({
+
+      filePath: this.data.resultSrc,
+
+      success() {
+
+        wx.showToast({
+          title: '保存成功'
+        })
+
+      },
+
+      fail() {
+
+        wx.showToast({
+          title: '保存失败',
+          icon: 'none'
+        })
+
+      }
+
+    })
+
+  },
+
+  formatSize(size) {
+
+    if (size < 1024) {
+      return size + ' B'
+    }
+
+    if (size < 1024 * 1024) {
+      return (
+        size / 1024
+      ).toFixed(1) + ' KB'
+    }
+
+    return (
+      size / 1024 / 1024
+    ).toFixed(2) + ' MB'
+  },
+
+  parseSize(text) {
+
+    if (text.includes('MB')) {
+      return (
+        parseFloat(text) *
+        1024 *
+        1024
+      )
+    }
+
+    if (text.includes('KB')) {
+      return (
+        parseFloat(text) *
+        1024
+      )
+    }
+
+    return parseFloat(text)
+  }
+
 })

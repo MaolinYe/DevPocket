@@ -1,4 +1,32 @@
-.tabbar-root{ position:fixed; left:0; right:0; bottom:18rpx; display:flex; justify-content:center; pointer-events:none }
-.tabbar{ pointer-events:auto; display:flex; gap:42rpx; padding:12rpx 24rpx; border-radius:36rpx; align-items:center; box-shadow:0 12rpx 36rpx rgba(0,0,0,.12); background: rgba(255,255,255,.75); backdrop-filter: blur(18px); }
-.tab{ display:flex; flex-direction:column; align-items:center; justify-content:center; color:#111 }
-.tab .label{ font-size:22rpx; color:#111; margin-top:6rpx }
+.tabbar {
+  width: 92%;
+
+  display: flex;
+
+  padding: 10rpx;
+
+  border-radius: 999rpx;
+
+  background: rgba(255,255,255,.78);
+
+  backdrop-filter: blur(24px);
+
+  box-shadow:
+    0 8rpx 24rpx rgba(0,0,0,.08);
+}
+
+.tab {
+  flex: 1;
+  height: 84rpx;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:999rpx;
+}
+
+.tab.active {
+  background: rgba(255,255,255,.95);
+}
