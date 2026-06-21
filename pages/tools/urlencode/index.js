@@ -1,2 +1,0 @@
-const enc = require('../../../utils/tools/urlencode')
-Page({ data:{ input:'', output:'', mode:'encode' }, onInput(e){ this.setData({ input: e.detail.value }) }, setMode(e){ this.setData({ mode: e.currentTarget.dataset.mode }) }, run(){ try{ let out = ''; if(this.data.mode === 'encode'){ out = enc.encode(this.data.input) } else { out = enc.decode(this.data.input) } this.setData({ output: out }) }catch(e){ wx.showToast({ title:'处理失败', icon:'none' }) } }, copyOutput(){ wx.setClipboardData({ data: this.data.output||'', success(){ wx.showToast({ title:'已复制' }) } }) } })

@@ -1,2 +1,0 @@
-const b64 = require('../../../utils/tools/base64')
-Page({ data:{ input:'', output:'', mode:'encode' }, onInput(e){ this.setData({ input: e.detail.value }) }, setMode(e){ const m = e.currentTarget.dataset.mode; this.setData({ mode: m }) }, run(){ try{ const out = this.data.mode==='encode' ? b64.encode(this.data.input) : b64.decode(this.data.input); this.setData({ output: out }) }catch(e){ wx.showToast({ title: e.message||'处理失败', icon:'none' }) } }, copyOutput(){ wx.setClipboardData({ data: this.data.output||'', success(){ wx.showToast({ title:'已复制' }) } }) } })

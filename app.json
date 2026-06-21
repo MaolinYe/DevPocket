@@ -1,19 +1,7 @@
 {
-    "pages": [
+  "pages": [
     "pages/tools/index",
-    "pages/tools/json/index",
-    "pages/tools/timestamp/index",
-    "pages/tools/uuid/index",
-    "pages/tools/base64/index",
-    "pages/tools/md5/index",
-    "pages/tools/urlencode/index",
-    "pages/tools/wordcount/index",
-    "pages/tools/caseconvert/index",
-    "pages/tools/dedupe/index",
     "pages/tools/imgcompress/index",
-    "pages/tools/img2base64/index",
-    "pages/tools/imginfo/index",
-    "pages/tools/promptopt/index",
     "pages/recent/index",
     "pages/profile/index"
   ],
