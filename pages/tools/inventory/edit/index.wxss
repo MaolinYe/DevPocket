@@ -1,0 +1,43 @@
+input,
+textarea {
+	padding: 18rpx;
+	border-radius: 16rpx;
+	margin-top: 16rpx;
+	font-size: 26rpx;
+}
+textarea {
+	min-height: 160rpx;
+	width: 100%;
+}
+.preview {
+	width: 100%;
+	margin-top: 16rpx;
+	border-radius: 16rpx;
+}
+.picker{
+  height:80rpx;
+  display:flex;
+  align-items:center;
+  padding:0 16rpx;
+  border-radius:20rpx;
+  margin-top:16rpx;
+}
+.category-btn{
+  width:36rpx;
+  height:36rpx;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  backdrop-filter:blur(24rpx);
+  color:#007AFF;
+  font-size:44rpx;
+  font-weight:500;
+}
+.category-btn:active{
+  transform:scale(.95);
+}
+.info-row {
+  display:flex;
+  align-items:center;
+}

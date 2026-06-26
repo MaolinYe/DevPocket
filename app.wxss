@@ -44,7 +44,7 @@ page,
 
 .glass-card {
   position: relative;
-
+  margin-block: 4rpx;
   overflow: hidden;
 
   border-radius: 32rpx;

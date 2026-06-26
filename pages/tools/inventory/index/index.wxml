@@ -1,0 +1,45 @@
+<view class="page">
+  <view class="container">
+    <view class="header">
+      <view class="title">
+        {{title}}
+      </view>
+      <view class="count">
+        共 {{filteredList.length}} 件
+      </view>
+    </view>
+    <view class="search-pill">
+      <input placeholder="搜索名称或备注" bindinput="onSearch" />
+    </view>
+    <scroll-view class="category-scroll" scroll-x>
+      <view class="category-wrap">
+        <block wx:for="{{categories}}" wx:key="*this">
+          <view class="category-item {{activeCategory===item?'active':''}}" bindtap="switchCategory" data-category="{{item}}">
+            {{item}}
+          </view>
+        </block>
+      </view>
+    </scroll-view>
+    <view wx:if="{{filteredList.length===0}}" class="empty glass-card">
+      <view class="empty-icon">📦</view>
+      <view class="empty-title">还没有物品</view>
+      <view class="empty-sub">点击右下角 + 添加第一个物品</view>
+    </view>
+    <view wx:else class="card-grid">
+      <block wx:for="{{filteredList}}" wx:key="id">
+        <view class="item-card glass-card" bindtap="openDetail" data-id="{{item.id}}">
+          <image class="cover" src="{{item.imagePath}}" mode="aspectFill" />
+          <view class="item-name">
+            {{item.name}}
+          </view>
+          <view class="item-category">
+            {{item.category}}
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+  <view class="fab" bindtap="goAdd">
+    ＋
+  </view>
+</view>

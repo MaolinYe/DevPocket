@@ -1,0 +1,23 @@
+<view class="page">
+  <view class="container">
+    <view class="glass-card card">
+      <button class="primary-btn" bindtap="chooseImage">
+        选择图片
+      </button>
+      <image wx:if="{{image}}" src="{{image}}" mode="aspectFit" class="preview" />
+    </view>
+    <view class="glass-card card">
+      <input placeholder="名称（必填）" bindinput="onName" value="{{name}}" />
+      <view class="info-row">
+        <picker mode="selector" range="{{categories}}" value="{{categoryIndex}}" bindchange="onCategoryChange">
+          <view class="picker">{{category || '分类'}}</view>
+        </picker>
+        <view class="category-btn" bindtap="addCategory">+</view>
+      </view>
+      <textarea placeholder="备注（选填）" bindinput="onRemark" value="{{remark}}" />
+    </view>
+    <view class="glass-card card">
+      <button class="primary-btn" bindtap="save">保存</button>
+    </view>
+  </view>
+</view>

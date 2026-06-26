@@ -17,7 +17,7 @@
       <image
         wx:if="{{src}}"
         src="{{src}}"
-        mode="widthFix"
+        mode="aspectFit"
         class="preview"
       />
 
@@ -125,7 +125,7 @@
 
       <image
         src="{{resultSrc}}"
-        mode="widthFix"
+        mode="aspectFit"
         class="preview"
       />
 

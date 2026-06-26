@@ -1,0 +1,23 @@
+<view class="page">
+  <view class="container">
+    <view class="glass-card card">
+      <image wx:if="{{item.imagePath}}" src="{{item.imagePath}}" mode="aspectFit" class="cover" />
+      <view class="title">{{item.name}}</view>
+      <view class="meta">分类：{{item.category}}</view>
+      <view class="meta">创建时间：{{time}}</view>
+    </view>
+    <view class="glass-card card">
+      <view class="remark">{{item.remark}}</view>
+    </view>
+    <view class="info-row">
+      <view class="icon-btn edit-btn" bindtap="edit">
+      <i class="iconfont icon-edit"></i>
+        ✏️
+      </view>
+
+      <view class="icon-btn delete-btn" bindtap="remove">
+        🗑️
+      </view>
+    </view>
+  </view>
+</view>

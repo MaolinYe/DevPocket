@@ -2,6 +2,9 @@
   "pages": [
     "pages/tools/index",
     "pages/tools/imgcompress/index",
+    "pages/tools/inventory/index/index",
+    "pages/tools/inventory/edit/index",
+    "pages/tools/inventory/detail/index",
     "pages/recent/index",
     "pages/profile/index"
   ],

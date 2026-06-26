@@ -3,4 +3,17 @@
 module.exports = [
   // 图片工具
   { id: 'imgcompress', name: '图片压缩', icon: 'image', page: '/pages/tools/imgcompress/index' },
+  {
+    id: 'closet',
+    name: '衣橱管理',
+    icon: 'closet',
+    page: '/pages/tools/inventory/index/index?module=closet'
+  },
+
+  {
+    id: 'inventory',
+    name: '物品管理',
+    icon: 'inventory',
+    page: '/pages/tools/inventory/index/index?module=item'
+  }
 ]

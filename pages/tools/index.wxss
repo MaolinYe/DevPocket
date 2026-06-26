@@ -28,3 +28,21 @@
   display: flex;
   justify-content: center;
 }
+
+.item-card {
+  background: rgba(255, 255, 255, .72);
+  backdrop-filter: blur(24rpx);
+  border: 1rpx solid rgba(255, 255, 255, .6);
+  box-shadow: 0 12rpx 30rpx rgba(0, 0, 0, .06);
+  border-radius: 22rpx;
+  overflow: hidden;
+  transition: .2s;
+}
+
+.item-card:active {
+  transform: scale(.97);
+}
+
+.cover {
+  border-radius: 22rpx 22rpx 0 0;
+}
